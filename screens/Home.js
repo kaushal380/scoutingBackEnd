@@ -28,7 +28,7 @@ const Home = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.ButtonsContainer}
-        onPress={() => { alert('another page should be added for sending final data through qr code') }}
+        onPress={() => { navigation.navigate('Send') }}
       >
         <Text style={styles.Buttontext}>
           send final data
