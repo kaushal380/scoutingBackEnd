@@ -23,5 +23,6 @@ const styles = StyleSheet.create({
         alignContent:'center',
         margin: 40
 
-    }
+    },
+    
 })
