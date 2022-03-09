@@ -28,12 +28,13 @@ const Home = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.ButtonsContainer}
-        onPress={() => { navigation.navigate('Send') }}
+        onPress={() => { navigation.navigate('display') }}
       >
         <Text style={styles.Buttontext}>
-          send final data
+          view data
         </Text>
       </TouchableOpacity>
+
 
     </View>
   )

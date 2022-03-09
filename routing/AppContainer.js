@@ -2,16 +2,11 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-<<<<<<< HEAD
-import PitDataCollect from '../screens/Pitscouting/PitDataCollect';
+import PitDataCollect from '../screens/Pitscouting/pitDataCollect';
 import MatchDataCollect from '../screens/MatchData/MatchDataCollect';
-=======
-import MatchDataCollect from '../screens/MatchData/MatchDataCollect'
-import PitDataCollect from '../screens/Pitscouting/PitDataCollect';
->>>>>>> f5916e2359ac89dc66347942f85adec2af4f9839
 import Home from '../screens/Home';
 import SendingFinalData from '../screens/sending final data/SendingFinalData';
-
+import DisplayContainer from './DisplayContainer';
 const Stack = createNativeStackNavigator();
 
 
@@ -21,7 +16,7 @@ const AppContainer = () => {
           <Stack.Screen options = {{headerShown: true, headerTitle: 'home', headerBackVisible: false}} name = "Home" component = {Home} />
           <Stack.Screen options = {{headerShown: true, headerTitle: 'pit scouting collection'}} name = "Pits" component = {PitDataCollect} />
           <Stack.Screen options = {{headerShown: true, headerTitle: 'match scouting collection'}} name = "Match" component = {MatchDataCollect} />
-          <Stack.Screen options = {{headerShown: true, headerTitle: 'sending data'}} name = "Send" component = {SendingFinalData} />
+          <Stack.Screen options = {{headerShown: false}} name = "display" component = {DisplayContainer} />
         </Stack.Navigator>
       
       )

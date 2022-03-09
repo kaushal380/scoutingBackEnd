@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'
 import React, {useState, useEffect} from 'react'
 import { QRCode, Canvas } from 'easyqrcode-react-native';
 import * as SQLite from 'expo-sqlite';
@@ -30,15 +30,34 @@ const SendingFinalData = () => {
                     }
                 })
         })
+        db.transaction((tx) => {
+            tx.executeSql(
+                'SELECT * FROM pitscouting', [],
+                (tx, results) => {
+                    if(results.rows.length > 0){
+                    console.log('results length: ', results.rows.length);
+                    console.log("Query successful")
+                    setPitData(results.rows._array)
+                    }
+                    else {
+                        alert("there's nothing")
+                        
+                    }
+                })
+        })
     }
 
     const convertMatchToString = () => {
         let arrayData = matchData;
         let StringData = JSON.stringify(arrayData)
-        // setMatchString(StringData)
         return StringData;
     }
 
+    const convertPitToString = () => {
+        let arrayData = pitData;
+        let StringData = JSON.stringify(arrayData)
+        return StringData;
+    }
     
     const generateMatchQRCode = (canvas) => {
         console.log(getMatchData())
@@ -51,26 +70,39 @@ const SendingFinalData = () => {
             var qrCode = new QRCode(canvas, options);
         }
     }
-    // const generatePitQRCode = (canvas) => {
-    //     if (canvas !== null) {
-    //         // QRCode options
-    //         var options = {
-    //             text: matchDataToString(),
-    //         };
-    //         // Create QRCode Object
-    //         var qrCode = new QRCode(canvas, options);
-    //     }
-    // }
+    const generatePitQRCode = (canvas) => {
+        if (canvas !== null) {
+            // QRCode options
+            var options = {
+                text: convertPitToString(),
+            };
+            // Create QRCode Object
+            var qrCode = new QRCode(canvas, options);
+        }
+    }
     const printStuff = () => {
         console.log(convertMatchToString());
     }
     return (
+        
         <View style = {styles.container}>
-            <Text style = {{fontSize: 30}} onPress = {sequentialCallInit}>update states</Text>
-            <Text style = {{fontSize: 30}} onPress = {printStuff}>SendingFinalData</Text>
+            <ScrollView>
+            <TouchableOpacity style = {styles.ButtonsContainer} onPress = {getMatchData}>
+                <Text style = {styles.Buttontext}>update states</Text>
+            </TouchableOpacity>
+            <View style = {styles.qrCodeContainer}>
+                <Text>Match data</Text>
             {matchData && (
                 <Canvas ref={generateMatchQRCode}/>
             )}
+            </View>
+            <View style = {styles.container}>
+                <Text>Pit data</Text>
+            {pitData && (
+                <Canvas ref={generatePitQRCode}/>
+            )}
+            </View>
+            </ScrollView>
         </View>
     )
 }
@@ -87,4 +119,21 @@ const styles = StyleSheet.create({
         margin: 40
 
     },
+    qrCodeContainer: {
+        margin: 30
+    },
+    ButtonsContainer: {
+        backgroundColor: "#0782F9",
+        width: 300,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 100,
+        borderRadius: 10,
+        marginTop: 20
+      },
+      Buttontext: {
+        color: 'white',
+        fontSize: 30,
+        fontWeight: '700'
+      },
 })
