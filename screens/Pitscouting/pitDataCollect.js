@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, {useState} from 'react'
 import { Scanner } from '../Scanner'
 
-const pitDataCollect = () => {
+const PitDataCollect = () => {
     const [ScannedData, setScannedData] = useState();
     return (
       <View style={styles.container}>
@@ -12,7 +12,7 @@ const pitDataCollect = () => {
     )
 }
 
-export default pitDataCollect
+export default PitDataCollect
 
 const styles = StyleSheet.create({
     container: {
