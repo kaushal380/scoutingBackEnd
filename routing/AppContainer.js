@@ -2,8 +2,13 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+<<<<<<< HEAD
 import PitDataCollect from '../screens/Pitscouting/PitDataCollect';
 import MatchDataCollect from '../screens/MatchData/MatchDataCollect';
+=======
+import MatchDataCollect from '../screens/MatchData/MatchDataCollect'
+import PitDataCollect from '../screens/Pitscouting/PitDataCollect';
+>>>>>>> f5916e2359ac89dc66347942f85adec2af4f9839
 import Home from '../screens/Home';
 
 const Stack = createNativeStackNavigator();
