@@ -2,8 +2,9 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
+import AwesomeButton from "react-native-really-awesome-button";
 
-export function Scanner({setScannedData}) {
+export function Scanner({ setScannedData }) {
   const [permission, setPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -18,8 +19,8 @@ export function Scanner({setScannedData}) {
 
   const handleScan = ({ data }) => {
     setScanned(true);
-    alert(`${data}`);
-    let stringObject = `${data}`
+    // alert(`${data}`);
+    let stringObject = `${data}`;
     let ArrayObjects = JSON.parse(stringObject);
     setScannedData(ArrayObjects);
   };
@@ -30,15 +31,16 @@ export function Scanner({setScannedData}) {
         onBarCodeScanned={scanned ? undefined : handleScan}
         style={StyleSheet.absoluteFillObject}
       />
-      {scanned && (
-        <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
-      )}
     </View>
   );
 
-  return (
-    cameraView
-  );
+  if (scanned) {
+    return (
+      <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
+    );
+  } else {
+    return cameraView;
+  }
 }
 
 const styles = StyleSheet.create({
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    alignContent: 'center',
+    alignContent: "center",
     margin: 25,
   },
 });
