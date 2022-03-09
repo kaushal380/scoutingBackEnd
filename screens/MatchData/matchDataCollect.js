@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, {useState} from 'react'
 import { Scanner } from '../Scanner'
 
-const matchDataCollect = () => {
+const MatchDataCollect = () => {
     const [ScannedData, setScannedData] = useState();
     return (
       <View style={styles.container}>
@@ -12,7 +12,7 @@ const matchDataCollect = () => {
     )
 }
 
-export default matchDataCollect
+export default MatchDataCollect
 
 const styles = StyleSheet.create({
     container: {
