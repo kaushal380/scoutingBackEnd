@@ -35,7 +35,22 @@ export function Scanner({ setScannedData }) {
 
   if (scanned) {
     return (
-      <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
+      <View style={{width: 250, height: 250, marginLeft: 100}}>
+        <AwesomeButton
+          progress
+          progressLoadingTime="500"
+          backgroundColor="#0782F9"
+          backgroundDarker="black"
+          borderRadius={50}
+          onPress={() => {
+            setTimeout(() => {
+              setScanned(false);
+            }, 550);
+          }}
+        >
+          <Text style={{ margin: 20 }}>Scan Another</Text>
+        </AwesomeButton>
+      </View>
     );
   } else {
     return cameraView;

@@ -7,14 +7,14 @@ const Home = () => {
 
   return (
     <View style = {styles.container}>
-      <Text style = {styles.title}>Downloading match data</Text>
+      <Text style = {styles.title}>Downloading Match Data</Text>
 
       <TouchableOpacity
         style={styles.ButtonsContainer}
         onPress={() => { navigation.navigate('Match') }}
       >
         <Text style={styles.Buttontext}>
-          match data collection
+          Match Data Collection
         </Text>
       </TouchableOpacity>
 
@@ -23,7 +23,7 @@ const Home = () => {
         onPress={() => { navigation.navigate('Pits') }}
       >
         <Text style={styles.Buttontext}>
-          pit data collection
+          Pit Data Collection
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
