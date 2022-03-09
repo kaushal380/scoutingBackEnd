@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { Scanner } from "../Scanner";
+import AwesomeButton from "react-native-really-awesome-button";
 
 import * as SQLite from "expo-sqlite";
 const db = SQLite.openDatabase("backEndScouting.db");
@@ -78,7 +79,7 @@ const PitDataCollect = () => {
     });
   };
 
-  const deleteMatchData = () => {
+  const deletePitData = () => {
     db.transaction((tx) => {
       tx.executeSql("DELETE FROM pitscouting");
     });
@@ -87,19 +88,41 @@ const PitDataCollect = () => {
   return (
     <View style={styles.container}>
       <Scanner setScannedData={setScannedData} />
-      <Text
-        style={{ padding: 20, fontSize: 20 }}
-        onPress={() => handleScanSubmit}
+      <AwesomeButton
+        backgroundColor="#0782F9"
+        backgroundDarker="black"
+        style={{marginBottom: 10, marginLeft: 125}}
+        borderRadius={50}
+        onPress={() => {
+          handleScanSubmit;
+        }}
       >
-        Combine Data
-      </Text>
-      <Text style={{ padding: 20, fontSize: 20 }} onPress={printPitValues}>
-        Print DB Values
-      </Text>
-
-      <Text style={{ padding: 20, fontSize: 20 }} onPress={deleteMatchData}>
-        Delete All
-      </Text>
+        <Text style={{ margin: 20 }}>Combine Data</Text>
+      </AwesomeButton>
+      <AwesomeButton
+        backgroundColor="#0782F9"
+        backgroundDarker="black"
+        paddingHorizontal={200}
+        borderRadius={50}
+        style={{marginBottom: 10, marginLeft: 75}}
+        onPress={() => {
+          printPitValues;
+        }}
+      >
+        <Text style={{ margin: 20 }}>Print Database Values</Text>
+      </AwesomeButton>
+      <AwesomeButton
+        backgroundColor="#0782F9"
+        backgroundDarker="black"
+        borderRadius={50}
+        paddingHorizontal={150}
+        style={{marginLeft: 75}}
+        onPress={() => {
+          deletePitData;
+        }}
+      >
+        <Text style={{ margin: 20 }}>Delete All Values</Text>
+      </AwesomeButton>
     </View>
   );
 };
